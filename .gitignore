@@ -1,11 +1,12 @@
 .DS_Store
 node_modules
 /dist
+/build
 
 /tests/e2e/videos/
 /tests/e2e/screenshots/
 
-# local env files
+# local env files c
 .env.local
 .env.*.local
 

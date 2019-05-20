@@ -1,5 +1,3 @@
-# learn-vue-js
-
 # 练手用的 Vue 仓库
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](https://opensource.org/licenses/MIT)
