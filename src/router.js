@@ -19,13 +19,14 @@ export default new Router({
     {
       path: '/vuex2',
       name: 'vuex2',
-      component: () => import(/* webpackChunkName: "vuex2" */ './views/Vuex2.vue')
+      component: () =>
+        import(/* webpackChunkName: "vuex2" */ './views/Vuex2.vue')
     },
     {
       path: '/vshowif',
       name: 'vshowif',
       component: () =>
         import(/* webpackChunkName: "vshowif" */ './views/VShowIf.vue')
-    },
+    }
   ]
 });
