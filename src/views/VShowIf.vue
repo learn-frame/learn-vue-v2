@@ -48,7 +48,7 @@
 
 <script>
 export default {
-  name: "ShowIf",
+  name: "VShowIf",
   data() {
     return {
       vShow: false

@@ -1,27 +1,62 @@
 <template>
   <div class="vuex">
     <h1>Vuex practice</h1>
-    <el-button type="danger" @click="handleDecreaseChange()">-</el-button>
-    <span class="count">当前 count 的值: {{count}}</span>
-    <el-button type="primary" @click="handleIncreaseChange()">+</el-button>
-    <p>已经完成的 todo 的数量: {{aliasDoneTodosLength}}</p>
-    <h2>已经完成的 todo:</h2>
-    <el-table :data="doneTodos">
-      <el-table-column prop="id" label="id"></el-table-column>
-      <el-table-column prop="text" label="todo"></el-table-column>
-      <el-table-column label="done">
-        <template slot-scope="scope">
-          <span>{{scope.row.done.toString()}}</span>
-        </template>
-      </el-table-column>
-    </el-table>
-    <el-input type="number" v-model.number="inputValue"></el-input>
-    <el-button type="primary" @click="getTodoById(inputValue)">click me</el-button>
-    <p>{{curTodo}}</p>
-    <el-table :data="data">
-      <el-table-column prop="type" label="type"></el-table-column>
-      <el-table-column prop="value" label="value"></el-table-column>
-    </el-table>
+    <el-row :gutter="20">
+      <el-col :xs="12" :sm="12" :md="12" :lg="8" :xl="6">
+        <div class="block">
+          <h2>全局 store 的计数器</h2>
+          <el-button type="danger" @click="handleDecreaseChange()">-</el-button>
+          <span class="count">当前 count 的值: {{count}}</span>
+          <el-button type="primary" @click="handleIncreaseChange()">+</el-button>
+        </div>
+      </el-col>
+      <el-col :xs="12" :sm="12" :md="12" :lg="8" :xl="6">
+        <div class="block">
+          <h2>已经完成的 todo 的数量: {{aliasDoneTodosLength}}</h2>
+        </div>
+      </el-col>
+      <el-col :xs="12" :sm="12" :md="12" :lg="8" :xl="6">
+        <div class="block">
+          <h2>已经完成的 todo</h2>
+          <el-table :data="doneTodos">
+            <el-table-column prop="id" label="id"></el-table-column>
+            <el-table-column prop="text" label="todo"></el-table-column>
+            <el-table-column label="done">
+              <template slot-scope="scope">
+                <span>{{scope.row.done.toString()}}</span>
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
+      </el-col>
+      <el-col :xs="12" :sm="12" :md="12" :lg="8" :xl="6">
+        <div class="block">
+          <h2>根据 id 检索 todo 的信息</h2>
+          <el-input style="margin-bottom: 10px;" type="number" v-model.number="inputValue"></el-input>
+          <el-button type="primary" @click="getTodoById(inputValue)">click me</el-button>
+          <p>{{curTodo}}</p>
+        </div>
+      </el-col>
+    </el-row>
+    <el-row :gutter="20">
+      <el-col :span="12">
+        <div class="block">
+          <h2>异步 store 示例</h2>
+          <el-table :data="data">
+            <el-table-column prop="code" label="code"></el-table-column>
+            <el-table-column label="symbol">
+              <template slot-scope="scope">
+                <!-- 通过 v-html 传入 html 代码, 使用 {{}} 均会被解析成字符串 -->
+                <span v-html="scope.row.symbol"></span>
+              </template>
+            </el-table-column>
+            <el-table-column prop="rate" label="rate"></el-table-column>
+            <el-table-column prop="description" label="description"></el-table-column>
+            <el-table-column prop="rate_float" label="rate_float"></el-table-column>
+          </el-table>
+        </div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -118,5 +153,11 @@ export default {
 <style scope lang='scss'>
 .count {
   margin: 0 10px;
+}
+
+.block {
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
 }
 </style>

@@ -1,17 +1,13 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <ShowIf/>
+    <h1>learn Vue.js</h1>
   </div>
 </template>
 
 <script>
-import ShowIf from "@/components/ShowIf.vue";
-
 export default {
   name: "home",
-  components: {
-    ShowIf
-  }
+  components: {}
 };
 </script>
