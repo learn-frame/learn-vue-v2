@@ -6,7 +6,6 @@
     </div>
     <el-button @click="handleVShowChange">切换 v-show</el-button>
 
-    <p>v-show 不是所谓的控制 display: none 和 display: block 的切换</p>
     <p>
       当 v-show 为 false 时, 它会给相应元素添加一个
       <strong>内联的{{' '}}</strong>

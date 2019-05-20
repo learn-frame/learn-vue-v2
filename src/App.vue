@@ -8,10 +8,24 @@
       <router-link to="/vuex2">Vuex2</router-link>
       {{' '}}|
       <router-link to="/vshowif">深入理解 v-show</router-link>
+      {{' '}}|
+      <router-link to="/use">深入理解 Vue.use</router-link>
     </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  name: "App",
+  data() {
+    return {};
+  },
+
+  mounted() {},
+  methods: {}
+};
+</script>
 
 <style lang="scss">
 #app {

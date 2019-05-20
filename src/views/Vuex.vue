@@ -31,8 +31,13 @@
       </el-col>
       <el-col :xs="12" :sm="12" :md="12" :lg="8" :xl="6">
         <div class="block">
-          <h2>根据 id 检索 todo 的信息</h2>
-          <el-input style="margin-bottom: 10px;" type="number" v-model.number="inputValue"></el-input>
+          <h2>根据 id 检索相应的 todo</h2>
+          <el-input
+            style="margin-bottom: 10px;"
+            type="number"
+            v-model.number="inputValue"
+            placeholder="输入 1 或 2 或 3 能匹配到"
+          ></el-input>
           <el-button type="primary" @click="getTodoById(inputValue)">click me</el-button>
           <p>{{curTodo}}</p>
         </div>
@@ -100,7 +105,7 @@ export default {
     return {
       base: 5,
       doneTodos: this.$store.getters.doneTodos,
-      inputValue: 0,
+      inputValue: null,
       curTodo: null
     };
   },

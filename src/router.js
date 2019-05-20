@@ -5,6 +5,7 @@ import Home from './views/Home.vue';
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -27,6 +28,11 @@ export default new Router({
       name: 'vshowif',
       component: () =>
         import(/* webpackChunkName: "vshowif" */ './views/VShowIf.vue')
+    },
+    {
+      path: '/use',
+      name: 'use',
+      component: () => import(/* webpackChunkName: "use" */ './views/Use.vue')
     }
   ]
 });
