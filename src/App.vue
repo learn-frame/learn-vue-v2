@@ -10,6 +10,8 @@
       <router-link to="/vshowif">深入理解 v-show</router-link>
       {{' '}}|
       <router-link to="/use">深入理解 Vue.use</router-link>
+      {{' '}}|
+      <router-link to="/interview">面试题</router-link>
     </div>
     <router-view/>
   </div>

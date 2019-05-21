@@ -33,6 +33,12 @@ export default new Router({
       path: '/use',
       name: 'use',
       component: () => import(/* webpackChunkName: "use" */ './views/Use.vue')
+    },
+    {
+      path: '/interview',
+      name: 'interview',
+      component: () =>
+        import(/* webpackChunkName: "interview" */ './views/Interview.vue')
     }
   ]
 });
