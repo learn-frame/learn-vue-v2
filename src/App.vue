@@ -12,6 +12,8 @@
       <router-link to="/use">深入理解 Vue.use</router-link>
       {{' '}}|
       <router-link to="/interview">面试题</router-link>
+      {{' '}}|
+      <router-link to="/ui-component">UI 轮子</router-link>
     </div>
     <router-view/>
   </div>

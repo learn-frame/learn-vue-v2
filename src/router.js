@@ -39,6 +39,12 @@ export default new Router({
       name: 'interview',
       component: () =>
         import(/* webpackChunkName: "interview" */ './views/Interview.vue')
+    },
+    {
+      path: '/ui-component',
+      name: 'ui-component',
+      component: () =>
+        import(/* webpackChunkName: "ui-component" */ './views/UIComponent.vue')
     }
   ]
 });
