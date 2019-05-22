@@ -45,6 +45,12 @@ export default new Router({
       name: 'ui-component',
       component: () =>
         import(/* webpackChunkName: "ui-component" */ './views/UIComponent.vue')
+    },
+    {
+      path: '/slot',
+      name: 'slot',
+      component: () =>
+        import(/* webpackChunkName: "slot" */ './views/LearnSlot.vue')
     }
   ]
 });

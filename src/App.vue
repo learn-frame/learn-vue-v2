@@ -14,8 +14,11 @@
       <router-link to="/interview">面试题</router-link>
       {{' '}}|
       <router-link to="/ui-component">UI 轮子</router-link>
+      {{' '}}|
+      <router-link to="/slot">Slot</router-link>
     </div>
-    <router-view/>
+    <router-view class="main_content"/>
+    <p>Copyright © {{new Date().getFullYear()}} Yancey Inc. All rights reserved.</p>
   </div>
 </template>
 
@@ -32,7 +35,13 @@ export default {
 </script>
 
 <style lang="scss">
+body {
+  margin: 0;
+}
 #app {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -45,9 +54,18 @@ export default {
   a {
     font-weight: bold;
     color: #2c3e50;
+    text-decoration: none;
     &.router-link-exact-active {
       color: #42b983;
     }
+    &:hover {
+      color: #42b983;
+      transition: color 200ms linear;
+    }
   }
+}
+
+.main_content {
+  flex: 1;
 }
 </style>

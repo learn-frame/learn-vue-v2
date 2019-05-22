@@ -26,7 +26,8 @@ export default {
     handleClickChange() {
       this.$message({
         message: "你点击了 y-button 组件",
-        type: "success"
+        type: "success",
+        showClose: true
       });
     }
   }

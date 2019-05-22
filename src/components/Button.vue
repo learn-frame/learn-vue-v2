@@ -1,7 +1,7 @@
 <template>
-  <button :disabled="isDisabled" :class="`y_button ${colorType}`" @click="handleClick">
+  <button :disabled="isDisabled" :class="`y_button ${colorType}`" @click="handleClick" >
     <i v-if="isShowIcon" :class="`el-icon ${iconType}`"></i>
-    <slot>button</slot>
+    <slot v-slot="slotProps"></slot>
   </button>
 </template>
 
