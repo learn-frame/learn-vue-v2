@@ -1,14 +1,14 @@
 <template>
-  <div class="template"></div>
+  <div class="not_found">
+    <h1>404 Not Found</h1>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "Template",
+  name: "not_found",
   data() {
-    return {
-      data: ''
-    };
+    return {};
   },
   watch: {},
   computed: {},
@@ -16,3 +16,6 @@ export default {
   methods: {}
 };
 </script>
+
+<style scoped lang="scss">
+</style>

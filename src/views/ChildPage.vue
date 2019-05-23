@@ -1,13 +1,15 @@
 <template>
-  <div class="template"></div>
+  <div class="child_page">
+    <h1>渲染子路由</h1>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "Template",
+  name: "ChildPage",
   data() {
     return {
-      data: ''
+      data: ""
     };
   },
   watch: {},

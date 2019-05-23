@@ -1,21 +1,25 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link>
+      <router-link :to="routePath.home.path">Home</router-link>
       {{' '}}|
-      <router-link to="/vuex">Vuex</router-link>
+      <router-link :to="routePath.vuex.path">Vuex</router-link>
       {{' '}}|
-      <router-link to="/vuex2">Vuex2</router-link>
+      <router-link :to="routePath.vuex2.path">Vuex2</router-link>
       {{' '}}|
-      <router-link to="/vshowif">深入理解 v-show</router-link>
+      <router-link :to="routePath.vshowif.path">深入理解 v-show</router-link>
       {{' '}}|
-      <router-link to="/use">深入理解 Vue.use</router-link>
+      <router-link :to="routePath.use.path">深入理解 Vue.use</router-link>
       {{' '}}|
-      <router-link to="/interview">面试题</router-link>
+      <router-link :to="routePath.interview.path">面试题</router-link>
       {{' '}}|
-      <router-link to="/ui-component">UI 轮子</router-link>
+      <router-link :to="routePath.uiComponent.path">UI 轮子</router-link>
       {{' '}}|
-      <router-link to="/slot">Slot</router-link>
+      <router-link :to="routePath.slot.path">Slot</router-link>
+      {{' '}}|
+      <router-link :to="routePath.router.path">Router</router-link>
+      {{' '}}|
+      <router-link to="/a-nonexistent-route">一个不存在的路由</router-link>
     </div>
     <router-view class="main_content"/>
     <p>Copyright © {{new Date().getFullYear()}} Yancey Inc. All rights reserved.</p>
@@ -23,10 +27,13 @@
 </template>
 
 <script>
+import routePath from "./constants/routePath";
 export default {
   name: "App",
   data() {
-    return {};
+    return {
+      routePath
+    };
   },
 
   mounted() {},

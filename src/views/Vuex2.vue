@@ -21,6 +21,7 @@
         </el-table>
       </el-col>
     </el-row>
+    <el-button type="danger" @click="back">点击跳转回 Vuex 页面</el-button>
   </div>
 </template>
 
@@ -43,7 +44,14 @@ export default {
     })
   },
   mounted() {},
-  methods: {}
+  methods: {
+    back() {
+      this.$router.push({
+        name: "vuex",
+        query: { userId: "5c02142fe51d4511be77aad7" }
+      });
+    }
+  }
 };
 </script>
 
