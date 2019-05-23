@@ -88,15 +88,15 @@ export default new Router({
 // redirect 当用户访问 /a 时，URL 将会被替换成 /b，然后匹配路由为 /b
 // alias    当用户访问 /b 时，URL 会保持为 /b，但是路由匹配则为 /a
 
-vueRouter.beforeEach((to, from, next) => {
-  const nextRoute = ['account', 'order', 'course'];
-  const auth = store.state.auth;
-  //跳转至上述3个页面
-  if (nextRoute.includes(to.name)) {
-    //未登录
-    if (!auth.IsLogin) {
-      vueRouter.push({ name: 'login' });
-    }
-  }
-  next();
-});
+// vueRouter.beforeEach((to, from, next) => {
+//   const nextRoute = ['account', 'order', 'course'];
+//   const auth = store.state.auth;
+//   //跳转至上述3个页面
+//   if (nextRoute.includes(to.name)) {
+//     //未登录
+//     if (!auth.IsLogin) {
+//       vueRouter.push({ name: 'login' });
+//     }
+//   }
+//   next();
+// });
