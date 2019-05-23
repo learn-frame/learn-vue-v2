@@ -13,6 +13,9 @@
       <figure>
         <img src="https://cn.vuejs.org/images/lifecycle.png" alt="lifecycle">
       </figure>
+
+      <p class="strong">Q: Vue.filter</p>
+      <p>{{1234567890 | thousands}}</p>
     </div>
   </div>
 </template>

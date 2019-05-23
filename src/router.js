@@ -113,6 +113,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   if (to.matched.some($route => $route.meta.requireAuth)) {
     if (store.state.loginStore.token) {
+      document.title = to.name;
       next();
     } else {
       next('/login');

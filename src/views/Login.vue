@@ -61,7 +61,6 @@ export default {
             this.resetForm();
           }
         } else {
-          errorToast(this, "请输入正确的用户名和密码");
           return false;
         }
       });
