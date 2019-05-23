@@ -2,7 +2,7 @@
   <div class="layouts">
     <el-menu
       :default-active="activeIndex2"
-      class="el-menu-demo"
+      class="menu"
       mode="horizontal"
       router
       @select="handleSelect"
@@ -22,11 +22,23 @@
           <el-menu-item index="2-4-3">选项3</el-menu-item>
         </el-submenu>
       </el-submenu>-->
-      <el-menu-item
-        v-for="routePath in routePaths"
-        :key="routePath.path"
-        :index="routePath.path"
-      >{{routePath.showName}}</el-menu-item>
+      <el-menu-item :index="routePaths.home.path">Home</el-menu-item>
+      <el-menu-item :index="routePaths.vuex.path">Vuex</el-menu-item>
+      <el-menu-item :index="routePaths.vuex2.path">Vuex2</el-menu-item>
+      <el-menu-item :index="routePaths.vshowif.path">深入理解 v-show</el-menu-item>
+      <el-menu-item :index="routePaths.use.path">深入理解 Vue.use</el-menu-item>
+      <el-menu-item :index="routePaths.interview.path">面试题</el-menu-item>
+      <el-menu-item :index="routePaths.uiComponent.path">UI 轮子</el-menu-item>
+      <el-menu-item :index="routePaths.slot.path">Slot</el-menu-item>
+      <el-menu-item :index="routePaths.router.path">Router</el-menu-item>
+      <el-menu-item index="/a-nonexistent-route">一个不存在的路由</el-menu-item>
+      <div class="user_info">
+        <i class="el-icon-user-solid"></i>
+        <span v-if="getUserName">Hello, {{getUserName}}</span>
+        <router-link v-else to="/login">
+          <span>请登录</span>
+        </router-link>
+      </div>
     </el-menu>
     <router-view class="main_content"/>
     <p>Copyright © {{new Date().getFullYear()}} Yancey Inc. All rights reserved.</p>
@@ -45,14 +57,15 @@ export default {
     };
   },
   watch: {},
-  computed: {},
-  mounted() {
-    console.log(this.$router);
-    console.log(this.$route);
+  computed: {
+    getUserName() {
+      return this.$store.state.loginStore.userName;
+    }
   },
+  mounted() {},
   methods: {
     handleSelect(key, keyPath) {
-      console.log(key, keyPath);
+      // console.log(key, keyPath);
     }
   }
 };
@@ -76,5 +89,21 @@ body {
 .main_content {
   flex: 1;
   margin-top: 40px;
+}
+.menu {
+  .user_info {
+    float: right;
+    margin-right: 20px;
+    line-height: 61px;
+    color: #fafafa;
+    outline: none;
+  }
+  a {
+    color: #fafafa;
+    text-decoration: none;
+  }
+  .el-icon-user-solid {
+    margin-right: 4px;
+  }
 }
 </style>

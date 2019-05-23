@@ -57,7 +57,7 @@ export default {
   computed: {},
   mounted() {
     // 用于获取当前 Vue 实例的初始化选项
-    console.log(this.$options);
+    // console.log(this.$options);
   },
   methods: {}
 };

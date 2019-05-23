@@ -42,12 +42,25 @@ const routePaths = {
   router: {
     path: '/router',
     name: 'router',
-    showName: '学习路由'
+    showName: '学习路由',
+    children: [
+      {
+        path: '/child',
+        name: 'child',
+        showName: '嵌套路由-子路有'
+      }
+    ],
+    meta: { requiresAuth: true }
   },
   dynamicRouter: {
     path: '/dynamic-router/:id',
     name: 'dynamic-router',
     showName: '动态路由页'
+  },
+  login: {
+    path: '/login',
+    name: 'login',
+    showName: '登录'
   },
   aNonexistentRoute: {
     path: '/a-nonexistent-route',

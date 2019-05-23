@@ -19,9 +19,9 @@ export default {
   },
   methods: {
     fetchData() {
-      console.log(this.$route.params.id);
-      console.log("getDataById...");
-      console.log(this);
+      // console.log(this.$route.params.id);
+      // console.log("getDataById...");
+      // console.log(this);
     }
   }
 };
