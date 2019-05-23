@@ -8,7 +8,7 @@ export const randomString = () =>
     .toString(36)
     .slice(2);
 
-export const sleep = (delay = 2000) =>
+export const sleep = (delay = 1000) =>
   new Promise(resolve => {
     setTimeout(() => resolve(), delay);
   });

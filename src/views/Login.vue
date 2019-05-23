@@ -3,10 +3,10 @@
     <h1>Login</h1>
     <el-form ref="form" :model="params" label-width="80px" :rules="rules">
       <el-form-item label="用户名" prop="userName">
-        <el-input v-model="params.userName"></el-input>
+        <el-input v-model="params.userName" placeholder="只要不为空即可"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
-        <el-input type="password" v-model="params.password"></el-input>
+        <el-input type="password" v-model="params.password" placeholder="只要不为空即可"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="login" :loading="loading">登录</el-button>

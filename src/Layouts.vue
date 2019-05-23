@@ -5,7 +5,6 @@
       class="menu"
       mode="horizontal"
       router
-      @select="handleSelect"
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b"
@@ -32,10 +31,19 @@
       <el-menu-item :index="routePaths.slot.path">Slot</el-menu-item>
       <el-menu-item :index="routePaths.router.path">Router</el-menu-item>
       <el-menu-item index="/a-nonexistent-route">一个不存在的路由</el-menu-item>
-      <div class="user_info">
+
+      <el-dropdown v-if="getUserName">
+        <div class="user_info">
+          <i class="el-icon-user-solid"></i>
+          <span>Hello, {{getUserName}}</span>
+        </div>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item @click.native="logout">Logout</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+      <div class="user_info" v-else>
         <i class="el-icon-user-solid"></i>
-        <span v-if="getUserName">Hello, {{getUserName}}</span>
-        <router-link v-else to="/login">
+        <router-link to="/login">
           <span>请登录</span>
         </router-link>
       </div>
@@ -47,6 +55,7 @@
 
 <script>
 import routePaths from "./constants/routePaths";
+import { LOGIN } from "./store/mutation-types";
 export default {
   name: "Layouts",
   data() {
@@ -64,8 +73,14 @@ export default {
   },
   mounted() {},
   methods: {
-    handleSelect(key, keyPath) {
-      // console.log(key, keyPath);
+    logout() {
+      this.$store.commit({
+        type: LOGIN,
+        token: "",
+        userName: "",
+        userId: ""
+      });
+      this.$router.push("/login");
     }
   }
 };
@@ -91,12 +106,14 @@ body {
   margin-top: 40px;
 }
 .menu {
+  height: 61px;
   .user_info {
     float: right;
     margin-right: 20px;
     line-height: 61px;
     color: #fafafa;
     outline: none;
+    cursor: pointer;
   }
   a {
     color: #fafafa;
@@ -104,6 +121,9 @@ body {
   }
   .el-icon-user-solid {
     margin-right: 4px;
+  }
+  .el-dropdown {
+    float: right;
   }
 }
 </style>
