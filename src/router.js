@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
-import routePath from './constants/routePath';
+import Home from '@/views/Home.vue';
+import routePaths from '@/constants/routePaths';
 
 Vue.use(Router);
 
@@ -9,78 +9,78 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: routePath.home.path,
-      name: routePath.home.name,
+      path: routePaths.home.path,
+      name: routePaths.home.name,
       component: Home
     },
     {
-      path: routePath.vuex.path,
-      name: routePath.vuex.name,
-      component: () => import(/* webpackChunkName: "vuex" */ './views/Vuex.vue')
+      path: routePaths.vuex.path,
+      name: routePaths.vuex.name,
+      component: () => import(/* webpackChunkName: "vuex" */ '@/views/Vuex.vue')
     },
     {
-      path: routePath.vuex2.path,
-      name: routePath.vuex2.name,
+      path: routePaths.vuex2.path,
+      name: routePaths.vuex2.name,
       component: () =>
-        import(/* webpackChunkName: "vuex2" */ './views/Vuex2.vue')
+        import(/* webpackChunkName: "vuex2" */ '@/views/Vuex2.vue')
     },
     {
-      path: routePath.vshowif.path,
-      name: routePath.vshowif.name,
+      path: routePaths.vshowif.path,
+      name: routePaths.vshowif.name,
       component: () =>
-        import(/* webpackChunkName: "vshowif" */ './views/VShowIf.vue')
+        import(/* webpackChunkName: "vshowif" */ '@/views/VShowIf.vue')
     },
     {
-      path: routePath.use.path,
-      name: routePath.use.name,
-      component: () => import(/* webpackChunkName: "use" */ './views/Use.vue')
+      path: routePaths.use.path,
+      name: routePaths.use.name,
+      component: () => import(/* webpackChunkName: "use" */ '@/views/Use.vue')
     },
     {
-      path: routePath.interview.path,
-      name: routePath.interview.name,
+      path: routePaths.interview.path,
+      name: routePaths.interview.name,
       component: () =>
-        import(/* webpackChunkName: "interview" */ './views/Interview.vue')
+        import(/* webpackChunkName: "interview" */ '@/views/Interview.vue')
     },
     {
-      path: routePath.uiComponent.path,
-      name: routePath.uiComponent.name,
+      path: routePaths.uiComponent.path,
+      name: routePaths.uiComponent.name,
       component: () =>
-        import(/* webpackChunkName: "ui-component" */ './views/UIComponent.vue')
+        import(/* webpackChunkName: "ui-component" */ '@/views/UIComponent.vue')
     },
     {
-      path: routePath.slot.path,
-      name: routePath.slot.name,
+      path: routePaths.slot.path,
+      name: routePaths.slot.name,
       component: () =>
-        import(/* webpackChunkName: "slot" */ './views/LearnSlot.vue')
+        import(/* webpackChunkName: "slot" */ '@/views/LearnSlot.vue')
     },
     {
-      path: routePath.router.path,
-      name: routePath.router.name,
+      path: routePaths.router.path,
+      name: routePaths.router.name,
       component: () =>
-        import(/* webpackChunkName: "router" */ './views/Route.vue'),
+        import(/* webpackChunkName: "router" */ '@/views/Route.vue'),
       children: [
         {
           path: 'child',
           name: 'child',
           component: () =>
-            import(/* webpackChunkName: "child" */ './views/ChildPage.vue')
+            import(/* webpackChunkName: "child" */ '@/views/ChildPage.vue')
         }
       ],
       meta: { requiresAuth: true }
     },
     {
-      path: routePath.dynamicRouter.path,
-      name: routePath.dynamicRouter.name,
+      path: routePaths.dynamicRouter.path,
+      name: routePaths.dynamicRouter.name,
       component: () =>
         import(
-          /* webpackChunkName: "dynamic-route" */ './views/DynamicRoute.vue'
+          /* webpackChunkName: "dynamic-route" */ '@/views/DynamicRoute.vue'
         )
     },
     {
       // 404
       path: '*',
       component: () =>
-        import(/* webpackChunkName: "not-found" */ './views/NotFound.vue')
+        import(/* webpackChunkName: "not-found" */ '@/views/NotFound.vue')
     }
   ]
 });

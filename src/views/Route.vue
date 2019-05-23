@@ -9,14 +9,14 @@
     </p>
 
     <el-button type="danger" @click="back">动态路由</el-button>
-    <router-link :to="routePath.vuex.path">
+    <router-link :to="routePaths.vuex.path">
       <el-button type="primary" round>点击跳转至 Vuex 页面</el-button>
     </router-link>
-    <router-link :to="{name: routePath.vuex2.name}">
+    <router-link :to="{name: routePaths.vuex2.name}">
       <el-button type="primary" round>点击跳转至 Vuex2 页面</el-button>
     </router-link>
     <router-link
-      :to="{name: routePath.dynamicRouter.name, params: {id: '5acd0c8a6fb9a028da7cdfaf'}}"
+      :to="{name: routePaths.dynamicRouter.name, params: {id: '5acd0c8a6fb9a028da7cdfaf'}}"
     >
       <el-button type="primary" round>点击跳转至 Dynamic Router 页面</el-button>
     </router-link>
@@ -51,12 +51,12 @@
 </template>
 
 <script>
-import routePath from "../constants/routePath";
+import routePaths from "../constants/routePaths";
 export default {
   name: "Route",
   data() {
     return {
-      routePath
+      routePaths
     };
   },
   watch: {
@@ -65,8 +65,7 @@ export default {
     }
   },
   computed: {},
-  mounted() {
-  },
+  mounted() {},
   methods: {
     back() {
       // push 可以接收一个字符串，它是某个路由的 path
@@ -77,7 +76,7 @@ export default {
       // 如要渲染动态路由应当使用 name 和 params 的组合
       // 该条同样适用于 router-link 组件的 to 属性
       this.$router.push({
-        name: routePath.dynamicRouter.name,
+        name: routePaths.dynamicRouter.name,
         params: { id: "5c02142fe51d4511be77aad7" },
         query: { pageSize: 10, pageNum: 1 }
       });
@@ -86,7 +85,7 @@ export default {
       // this.$router.go(-1);
       // 前进一步
       // this.$router.go(1);
-    },
+    }
   }
 };
 </script>

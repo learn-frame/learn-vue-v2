@@ -10,7 +10,6 @@
       text-color="#fff"
       active-text-color="#ffd04b"
     >
-      <el-menu-item :index="routePath.home.path">Home</el-menu-item>
       <!-- <el-submenu index="2">
         <template slot="title">我的工作台</template>
         <el-menu-item index="2-1">选项1</el-menu-item>
@@ -23,15 +22,11 @@
           <el-menu-item index="2-4-3">选项3</el-menu-item>
         </el-submenu>
       </el-submenu>-->
-      <el-menu-item :index="routePath.vuex.path">Vuex</el-menu-item>
-      <el-menu-item :index="routePath.vuex2.path">Vuex2</el-menu-item>
-      <el-menu-item :index="routePath.vshowif.path">深入理解 v-show</el-menu-item>
-      <el-menu-item :index="routePath.use.path">深入理解 Vue.use</el-menu-item>
-      <el-menu-item :index="routePath.interview.path">面试题</el-menu-item>
-      <el-menu-item :index="routePath.uiComponent.path">UI 轮子</el-menu-item>
-      <el-menu-item :index="routePath.slot.path">Slot</el-menu-item>
-      <el-menu-item :index="routePath.router.path">Router</el-menu-item>
-      <el-menu-item index="/a-nonexistent-route">一个不存在的路由</el-menu-item>
+      <el-menu-item
+        v-for="routePath in routePaths"
+        :key="routePath.path"
+        :index="routePath.path"
+      >{{routePath.showName}}</el-menu-item>
     </el-menu>
     <router-view class="main_content"/>
     <p>Copyright © {{new Date().getFullYear()}} Yancey Inc. All rights reserved.</p>
@@ -39,19 +34,22 @@
 </template>
 
 <script>
-import routePath from "./constants/routePath";
+import routePaths from "./constants/routePaths";
 export default {
   name: "Layouts",
   data() {
     return {
       activeIndex: "1",
-      activeIndex2: routePath.home.path,
-      routePath
+      activeIndex2: routePaths.home.path,
+      routePaths
     };
   },
   watch: {},
   computed: {},
-  mounted() {},
+  mounted() {
+    console.log(this.$router);
+    console.log(this.$route);
+  },
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
