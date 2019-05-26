@@ -20,34 +20,34 @@ const router = new Router({
       name: routePaths.vuex.name,
       component: () =>
         import(/* webpackChunkName: "vuex" */ '@/views/Vuex.vue'),
-      meta: { requireAuth: true }
+      meta: { requireAuth: false }
     },
     {
       path: routePaths.vuex2.path,
       name: routePaths.vuex2.name,
       component: () =>
         import(/* webpackChunkName: "vuex2" */ '@/views/Vuex2.vue'),
-      meta: { requireAuth: true }
+      meta: { requireAuth: false }
     },
     {
       path: routePaths.vshowif.path,
       name: routePaths.vshowif.name,
       component: () =>
         import(/* webpackChunkName: "vshowif" */ '@/views/VShowIf.vue'),
-      meta: { requireAuth: true }
+      meta: { requireAuth: false }
     },
     {
       path: routePaths.use.path,
       name: routePaths.use.name,
       component: () => import(/* webpackChunkName: "use" */ '@/views/Use.vue'),
-      meta: { requireAuth: true }
+      meta: { requireAuth: false }
     },
     {
       path: routePaths.interview.path,
       name: routePaths.interview.name,
       component: () =>
         import(/* webpackChunkName: "interview" */ '@/views/Interview.vue'),
-      meta: { requireAuth: true }
+      meta: { requireAuth: false }
     },
     {
       path: routePaths.uiComponent.path,
@@ -56,21 +56,21 @@ const router = new Router({
         import(
           /* webpackChunkName: "ui-component" */ '@/views/UIComponent.vue'
         ),
-      meta: { requireAuth: true }
+      meta: { requireAuth: false }
     },
     {
       path: routePaths.slot.path,
       name: routePaths.slot.name,
       component: () =>
         import(/* webpackChunkName: "slot" */ '@/views/LearnSlot.vue'),
-      meta: { requireAuth: true }
+      meta: { requireAuth: false }
     },
     {
       path: routePaths.router.path,
       name: routePaths.router.name,
       component: () =>
         import(/* webpackChunkName: "router" */ '@/views/Route.vue'),
-      meta: { requireAuth: true },
+      meta: { requireAuth: false },
       children: [
         {
           path: 'child',
@@ -87,7 +87,7 @@ const router = new Router({
         import(
           /* webpackChunkName: "dynamic-route" */ '@/views/DynamicRoute.vue'
         ),
-      meta: { requireAuth: true }
+      meta: { requireAuth: false }
     },
     {
       path: routePaths.login.path,

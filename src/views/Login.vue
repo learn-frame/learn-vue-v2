@@ -1,6 +1,10 @@
 <template>
   <div class="login">
-    <h1>Login</h1>
+    <h1>
+      Login
+      <p class="note">* 模拟导航守卫，进入首页必须登录，其他页面无限制。</p>
+    </h1>
+
     <el-form ref="form" :model="params" label-width="80px" :rules="rules">
       <el-form-item label="用户名" prop="userName">
         <el-input v-model="params.userName" placeholder="只要不为空即可"></el-input>
@@ -77,6 +81,10 @@ export default {
   .el-form {
     margin: 0 auto;
     max-width: 40%;
+  }
+  .note {
+    font-size: 12px;
+    color: red;
   }
 }
 </style>
