@@ -60,22 +60,25 @@ export default {
     arr: {
       // watch 无法监听 $forceUpdate，但可以监听 $set 和 $delete
       handler(val, oldVal) {
-        console.log("默认立即触发一次", val, oldVal);
+        // console.log("默认立即触发一次", val, oldVal);
       },
       immediate: true,
       deep: true
     }
   },
   computed: {},
-  mounted() {},
+  mounted() {
+  },
   methods: {
     handleClickChange() {
-      // this.arr.push("kasumi");
+      console.log(this.$options.render);
       // this.arr[2] = "kasumi";
       // this.$set(this.arr, 2, "kasumi");
+
       // this.obj.gender = "male";
-      // delete this.obj.name;
       // this.$set(this.obj, 'gender', "male");
+
+      // delete this.obj.name;
       // this.$delete(this.obj, 'name');
 
       // this.$forceUpdate();
