@@ -82,3 +82,40 @@ Function.prototype.bind2 = function(thisArg, ...args) {
 // 客户端发送一个 ACK=1 的包，此时客户端进入 SYN-SEND 阶段
 // 服务端收到后，发送一个 ACK/SYN 的包，此时服务端进入 SYN-CRVD 阶段
 // 客户端收到后再次发送一个 ACK 包，此时客户端服务器都进入 ESTABLISHED
+
+const getJSON = function(url) {
+  const promise = new Promise(function(resolve, reject) {
+    const handler = function() {
+      if (this.readyState !== 4) {
+        return;
+      }
+      if (this.status === 200) {
+        resolve(this.response);
+      } else {
+        reject(new Error(this.statusText));
+      }
+    };
+    const client = new XMLHttpRequest();
+    client.open('GET', url);
+    client.onreadystatechange = handler;
+    client.responseType = 'json';
+    client.setRequestHeader('Accept', 'application/json');
+    client.send();
+  });
+
+  return promise;
+};
+
+// 存储型 XSS
+// 用户私信/网站评论 里面用户输入了恶意代码，被提交到了数据库
+// 在请求接口后渲染时造成 XSS
+
+// 反射型 XSS
+// 恶意代码会被存储到 URL 中，当打开时会将恶意代码拼接到 HTML 中
+// 渲染页面时造成跨站脚本攻击
+
+// DOM 型
+// 前端代码不严谨，导致如使用 innerHTML 时插入了不安全的代码
+
+// HTTP-only
+// 验证码

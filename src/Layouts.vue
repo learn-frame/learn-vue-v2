@@ -71,7 +71,9 @@ export default {
       return this.$store.state.loginStore.userName;
     }
   },
-  mounted() {},
+  mounted() {
+    console.log(this.$options)
+  },
   methods: {
     logout() {
       this.$store.commit({
