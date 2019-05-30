@@ -143,3 +143,33 @@ function binSearch(arr, data) {
   }
   return -1;
 }
+
+// 洗牌算法
+const shuffle = function(arr) {
+  let i = arr.length,
+    j;
+  while (i) {
+    j = Math.floor(Math.random() * i--);
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+};
+
+// 三次握手
+// 客户端发送一个 SYN=1 的包，进入 SYN_SEND 状态
+// 服务端接收后返回一个 ACK/SYN 的包，进入 SYN_RCVD 状态
+// 客户端再次发送一个 ACK=1 的包，进入 ESTABLISHED 状态
+// 服务端收到后也进入 ESTABLISHED 的状态
+
+// 四次挥手
+// 客户端发送一个 FIN=1 的包，进入 FIN_WAIT_1 状态
+// 服务端收到后发送一个 ACK=1 的包，并进入 CLOSE_WAIT 状态，客户端收到后，进入 FIN_WAIT_2 状态
+// 服务器端准备好关闭连接时，发送一个 FIN=1 的包，进入 LAST-ACK 状态
+// 客户端收到后发送一个 ACK=1 的包，并进入 TIME_WAIT 状态，当服务端收到后直接进入 CLOSE 状态，而客户端需要等待 [2个最长报文段寿命] 才进入 CLOSE 状态。
+
+// 首先找浏览器本身
+// 再找 Host 文件
+// 上面找不到就去本地域名服务器找，本地服务器一般是 ISP 提供
+// 如果找不到，本地服务器会去请求根域名服务器
+// 根域名服务器会返回 Name Server 的服务器，这个服务器一般就是域名注册厂商的服务器
+// 它会返回 IP 记录和一个 TTL 时间
