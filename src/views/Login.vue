@@ -42,7 +42,9 @@ export default {
 
   watch: {},
   computed: {},
-  mounted() {},
+  mounted() {
+    console.log(this._vnode)
+  },
   methods: {
     login() {
       this.$refs.form.validate(async valid => {
