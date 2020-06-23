@@ -1,12 +1,11 @@
 .DS_Store
 node_modules
 /dist
-/build
 
 /tests/e2e/videos/
 /tests/e2e/screenshots/
 
-# local env files c
+# local env files
 .env.local
 .env.*.local
 
@@ -14,6 +13,7 @@ node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
 # Editor directories and files
 .idea
