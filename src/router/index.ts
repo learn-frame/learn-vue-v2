@@ -15,6 +15,11 @@ const routes: Array<RouteConfig> = [
     component: () =>
       import(/* webpackChunkName: "basic" */ '../views/Basic.vue'),
   },
+  {
+    path: '/vuex',
+    name: 'Vuex',
+    component: () => import(/* webpackChunkName: "vuex" */ '../views/Vuex.vue'),
+  },
 ]
 
 const router = new VueRouter({

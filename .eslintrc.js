@@ -17,6 +17,7 @@ module.exports = {
     'arrow-parens': 'off',
     semi: 'off',
     'implicit-arrow-linebreak': 'off',
+    '@typescript-eslint/ban-ts-ignore': 'off',
   },
   overrides: [
     {
