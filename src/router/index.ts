@@ -10,10 +10,9 @@ const routes: Array<RouteConfig> = [
     component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
   },
   {
-    path: '/basic',
-    name: 'Basic',
-    component: () =>
-      import(/* webpackChunkName: "basic" */ '../views/Basic.vue'),
+    path: '/vue-router',
+    name: 'VueRouter',
+    component: () => import(/* webpackChunkName: "vue-router" */ '../views/VueRouter.vue'),
   },
   {
     path: '/vuex',

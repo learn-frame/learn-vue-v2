@@ -16,16 +16,12 @@
 
       <v-spacer></v-spacer>
 
-      <router-link to="/basic" class="nav-link">
-        <v-btn text>
-          Basic
-        </v-btn>
+      <router-link to="/vue-router" class="nav-link">
+        <v-btn text>Vue Router</v-btn>
       </router-link>
 
       <router-link to="/vuex" class="nav-link">
-        <v-btn text>
-          Vuex
-        </v-btn>
+        <v-btn text>Vuex</v-btn>
       </router-link>
     </v-app-bar>
 

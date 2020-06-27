@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" max-width="400" tile>
+  <v-card max-width="400">
     <v-list>
       <v-subheader>TODOS</v-subheader>
       <v-list-item-group color="primary">
@@ -13,15 +13,19 @@
   </v-card>
 </template>
 
-<script lang="js">
-export default {
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
   name: 'HelloWorld',
-  props: ['dataList'],
+
+  props: {
+    dataList: { type: Array },
+  },
   data() {
     return {
-      todos: this.dataList,
-
-    };
+      todos: this.dataList.slice(0, 3),
+    }
   },
-}
+})
 </script>
