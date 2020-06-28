@@ -49,6 +49,49 @@
       <p>{{ reversedInputTxt }}</p>
     </v-col>
 
+    <!-- 绑定 class -->
+    <div
+      class="static"
+      :class="{ active: !!inputTxt, 'text-danger': isFetching }"
+    >
+      如果在文本框输入文字, 我就会变绿; 如果点击上面的按钮, 我就会变红
+    </div>
+
+    <!-- 绑定 class 可以用对象的形式 -->
+    <div :class="classObj">
+      i'm red
+    </div>
+
+    <!-- 绑定 class 还可以用数组的形式 -->
+    <div
+      :class="[
+        isFetching ? activeClass : '',
+        errorClass,
+        { active: isFetching },
+      ]"
+    >
+      i'm red
+    </div>
+
+    <!-- 绑定 inline style 的方式几乎跟 class 一样 -->
+    <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
+
+    <!-- vue 会将两个 input 框复用, 因此切换之后输入的值会保留 -->
+    <!-- 在指明 key 后就会把输入的值清除了 -->
+    <template v-if="loginType === 'username'">
+      <label>Username</label>
+      <input placeholder="Enter your username" key="username-input" />
+    </template>
+    <template v-else>
+      <label>Email</label>
+      <input placeholder="Enter your email address" key="email-input" />
+    </template>
+
+    <!-- 类似 Python 中的 Range, 下面会渲染出 1 2 3 4 5 -->
+    <div>
+      <span v-for="n in 5" :key="n">{{ n }} </span>
+    </div>
+
     <!-- 写个组件吧 -->
     <hello-world :dataList="todos" />
   </div>
@@ -73,6 +116,7 @@ export default Vue.extend({
     // TODO:
   },
 
+  // 计算属性最好是“纯”的, watch 可以添加一些副作用
   watch: {
     inputTxt(val) {
       this.msg = `Utada Hikaru - ${val}`
@@ -93,6 +137,15 @@ export default Vue.extend({
     url: 'https://yanceyleo.com',
     firstName: '',
     lastName: '',
+    classObj: {
+      active: false,
+      'text-danger': true,
+    },
+    activeClass: 'active',
+    errorClass: 'text-danger',
+    activeColor: 'red',
+    fontSize: 30,
+    loginType: 'username',
   }),
 
   // 计算属性是基于它们的响应式依赖进行缓存的
@@ -122,13 +175,15 @@ export default Vue.extend({
   },
 
   methods: {
-    handleClick() {
+    handleClick(e: Event) {
       this.msg = this.msg
         .split('')
         .reverse()
         .join('')
 
       this.isFetching = !this.isFetching
+
+      console.log(e.target)
     },
     onSubmit() {
       // TODO:
@@ -145,5 +200,13 @@ export default Vue.extend({
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+
+.active {
+  color: #42b983;
+}
+
+.text-danger {
+  color: #d63200;
 }
 </style>
