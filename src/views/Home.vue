@@ -40,15 +40,6 @@
     <!-- 动态参数 -->
     <a :[attributeName]="url">Yancey Official Blog</a>
 
-    <!-- prevent 为修饰符, 直阻止默认行为 -->
-    <form @submit.prevent="onSubmit">...</form>
-
-    <!-- 双向绑定 -->
-    <v-col cols="12" sm="6" md="3">
-      <v-text-field v-model="inputTxt" label="Input something..." />
-      <p>{{ reversedInputTxt }}</p>
-    </v-col>
-
     <!-- 绑定 class -->
     <div
       class="static"
@@ -91,6 +82,53 @@
     <div>
       <span v-for="n in 5" :key="n">{{ n }} </span>
     </div>
+
+    <!--
+      事件修饰符:
+      .stop 阻止冒泡
+      .prevent 取消默认事件
+      .capture 内部元素触发的事件先在此处理，然后才交由内部元素进行处理
+      .self 只当在 event.target 是当前元素自身时触发处理函数
+      .once 只触发一次
+      .passive 可提高移动端 touch/滚动 事件的性能 (https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Improving_scrolling_performance_with_passive_listeners)
+
+      按键事件修饰符:
+      :keyup.enter
+      :keyup.page-down
+      .enter
+      :keyup.tab
+      :keyup.delete (捕获“删除”和“退格”键)
+      :keyup.esc
+      :keyup.space
+      :keyup.up
+      :keyup.down
+      :keyup.left
+      :keyup.right
+     -->
+
+    <!-- 双向绑定 -->
+    <v-col cols="12" sm="6" md="3">
+      <v-text-field v-model="inputTxt" label="Input something..." />
+      <p>{{ reversedInputTxt }}</p>
+    </v-col>
+
+    <!-- 加上 lazy 修饰符的双向绑定, 会监听 change 事件, 而非 input 事件 -->
+    <v-col cols="12" sm="6" md="3">
+      <input v-model.lazy="inputVal" />
+      <p>inputVal: {{ inputVal }}</p>
+    </v-col>
+
+    <!-- number 修饰符 -->
+    <v-col cols="12" sm="6" md="3">
+      <input v-model.number="inputVal" />
+      <p>inputVal: {{ inputVal }}</p>
+    </v-col>
+
+    <!-- trim 修饰符 -->
+    <v-col cols="12" sm="6" md="3">
+      <input v-model.trim="inputVal" />
+      <p>inputVal: {{ inputVal }}</p>
+    </v-col>
 
     <!-- 写个组件吧 -->
     <hello-world :dataList="todos" />
@@ -146,6 +184,7 @@ export default Vue.extend({
     activeColor: 'red',
     fontSize: 30,
     loginType: 'username',
+    inputVal: 'default value',
   }),
 
   // 计算属性是基于它们的响应式依赖进行缓存的
@@ -184,9 +223,6 @@ export default Vue.extend({
       this.isFetching = !this.isFetching
 
       console.log(e.target)
-    },
-    onSubmit() {
-      // TODO:
     },
   },
 })
