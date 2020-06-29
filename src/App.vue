@@ -25,8 +25,8 @@
       </router-link>
     </v-app-bar>
 
-    <v-main>
-      <router-view />
+    <v-main >
+      <router-view class="main"/>
     </v-main>
   </v-app>
 </template>
@@ -48,5 +48,9 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .nav-link {
   text-decoration: none;
+}
+
+.main {
+  padding: 24px;
 }
 </style>

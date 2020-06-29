@@ -46,5 +46,15 @@ export default Vue.extend({
       },
     }
   },
+
+  methods: {
+    handleClick() {
+      if (this.dataList) {
+        return true
+      }
+
+      return false
+    },
+  },
 })
 </script>
