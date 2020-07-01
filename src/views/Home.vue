@@ -130,8 +130,18 @@
       <p>inputVal: {{ inputVal }}</p>
     </v-col>
 
-    <!-- 写个组件吧 -->
-    <hello-world :dataList="todos" />
+    <!--
+      写个组件吧:
+
+      @param {Array} [data-list] - 参数说明
+      @param {String} [props-str] - 参数说明
+      @param {String} [data-fuck] - 组件的 props 没有声明 dataFuck, 该属性就是非 Prop 的 Attribute
+    -->
+    <hello-world
+      :data-list="todos"
+      :props-str="inputTxt"
+      :data-fuck="inputTxt"
+    />
   </div>
 </template>
 
@@ -161,6 +171,9 @@ export default Vue.extend({
     },
   },
 
+  // data 必须是一个函数而不能是一个对象,
+  // 如是是一个对象, 渲染多个相同组件时,
+  // 数据就会互相干扰
   data: () => ({
     msg: 'first love.'.slice(0, -1),
     todos: [
@@ -168,7 +181,7 @@ export default Vue.extend({
       { text: '学习 Vue' },
       { text: '整个牛项目' },
     ],
-    inputTxt: '',
+    inputTxt: 'fuck you',
     rawHtml: '<span style="color: red">hello, world</span>',
     isFetching: false,
     attributeName: 'href',
