@@ -23,6 +23,9 @@
         </v-list-item>
       </v-list-item-group>
     </v-list>
+
+    <p>props_str: {{ propsStr }}</p>
+    <p>data_str: {{ dataStr }}</p>
   </v-card>
 </template>
 
@@ -34,11 +37,12 @@ export default Vue.extend({
 
   props: {
     dataList: { type: Array },
+    propsStr: { type: String },
   },
   data() {
     return {
       todos: this.dataList.slice(0, 3),
-
+      dataStr: this.propsStr,
       object: {
         title: 'How to do lists in Vue',
         author: 'Jane Doe',
