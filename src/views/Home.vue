@@ -181,7 +181,7 @@ export default Vue.extend({
       { text: '学习 Vue' },
       { text: '整个牛项目' },
     ],
-    inputTxt: 'fuck you',
+    inputTxt: 'input something...',
     rawHtml: '<span style="color: red">hello, world</span>',
     isFetching: false,
     attributeName: 'href',
