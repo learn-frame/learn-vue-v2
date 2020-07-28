@@ -23,6 +23,10 @@
       <router-link to="/vuex" class="nav-link">
         <v-btn text>Vuex</v-btn>
       </router-link>
+
+        <router-link to="/e2e" class="nav-link">
+        <v-btn text>E2E</v-btn>
+      </router-link>
     </v-app-bar>
 
     <v-main >

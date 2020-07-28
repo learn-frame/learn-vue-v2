@@ -12,12 +12,18 @@ const routes: RouteConfig[] = [
   {
     path: '/vue-router',
     name: 'VueRouter',
-    component: () => import(/* webpackChunkName: "vue-router" */ '../views/VueRouter.vue'),
+    component: () =>
+      import(/* webpackChunkName: "vue-router" */ '../views/VueRouter.vue'),
   },
   {
     path: '/vuex',
     name: 'Vuex',
     component: () => import(/* webpackChunkName: "vuex" */ '../views/Vuex.vue'),
+  },
+  {
+    path: '/e2e',
+    name: 'E2E',
+    component: () => import(/* webpackChunkName: "e2e" */ '../views/E2E.vue'),
   },
 ]
 
