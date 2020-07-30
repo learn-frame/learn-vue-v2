@@ -15,6 +15,9 @@ module.exports = (on, config) => {
   //  watchOptions: {}
   // }))
 
+  // eslint-disable-next-line
+  require('@cypress/code-coverage/task')(on, config)
+
   return {
     ...config,
     fixturesFolder: 'tests/e2e/fixtures',
@@ -22,5 +25,5 @@ module.exports = (on, config) => {
     screenshotsFolder: 'tests/e2e/screenshots',
     videosFolder: 'tests/e2e/videos',
     supportFile: 'tests/e2e/support/index.js',
-  };
-};
+  }
+}

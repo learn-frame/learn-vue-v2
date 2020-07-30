@@ -1,10 +1,18 @@
 <template>
   <div class="e2e">
     <h1>Learn E2E</h1>
-    <v-btn depressed color="primary" @click="handleClick">click me!</v-btn>
-    <p v-if="showLog">Hello, world.</p>
 
-    <p>https://www.baidu.com</p>
+    <v-btn
+      depressed
+      color="primary"
+      @click="handleClick"
+      :class="{ 'is-fetching': showLog }"
+    >click me!</v-btn>
+    <p v-if="showLog" class="log">Hello, world.</p>
+
+    <p class="c-image">https://www.baidu.com</p>
+
+    <input type="text" class="c-input" />
   </div>
 </template>
 
@@ -13,10 +21,6 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'E2E',
-
-  mounted() {
-    // TODO:
-  },
 
   data: () => ({
     showLog: false,
