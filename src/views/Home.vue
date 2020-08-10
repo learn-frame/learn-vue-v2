@@ -24,7 +24,7 @@
 
     <!-- v-if v-else-if v-else -->
     <p v-if="isFetching">{{ msg }}</p>
-    <p v-else-if="isFetching">{{ msg }}</p>
+    <p v-else-if="inputTxt">{{ msg }}</p>
     <p v-else>{{ msg }}</p>
 
     <!-- v-if 与 v-show 的区别, 老生常谈 -->
