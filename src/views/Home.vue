@@ -234,8 +234,6 @@ export default Vue.extend({
         .join('')
 
       this.isFetching = !this.isFetching
-
-      console.log(e.target)
     },
   },
 })

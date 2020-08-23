@@ -1,72 +1,154 @@
 <template>
-  <section class="swiper-container">
-    <ul class="swiper-wrapper" ref="swiperList">
-      <li ref="carouselItem" class="swiper-slide" a-for="(video, i) in videos" :key="i">
-        <img :src="video" class="item-img" />
-      </li>
-    </ul>
-  </section>
+  <ul
+    class="swiper-wrapper"
+    ref="swiperList"
+    @touchstart="handleTouchStart($event)"
+    @touchmove="handleTouchMove($event)"
+    @touchend="handleTouchEnd($event)"
+  >
+    <li
+      ref="swiperItem"
+      :class="['swiper-slide', `swiper-slide-${position[i]}`]"
+      v-for="(video, i) in currVideos"
+      :key="i"
+    >
+      <img :src="video" class="item-img" />
+    </li>
+  </ul>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
 
 export default Vue.extend({
-  mounted() {
-    this.autoCarousel()
-  },
-  data: () => ({
-    videos: [
-      'https://pic.rmb.bdstatic.com/bjh/live/9a7b7b81b5c0be9d4c4798b5645598e3.png',
-      'https://pic.rmb.bdstatic.com/bjh/live/c2dbd6798bfa1a43921c1e17b6c34819.png',
-      'https://pic.rmb.bdstatic.com/bjh/live/b457233d57254a53cdb6633a22a6b7ae.jpeg',
-    ],
-  }),
-  methods: {
-    autoCarousel() {
-      const $swiperListEl = this.$refs.swiperList as HTMLUListElement
-      let pos = 0
+  name: 'Swiper',
 
-      setInterval(() => {
-        $swiperListEl.style.transform = `translateX(${-pos * 100}%)`
-        pos += 1
-        if (pos > 2) pos = 0
-      }, 1000)
+  data() {
+    return {
+      videos: [
+        'https://dummyimage.com/600x400/000000/fff.png&text=text-1',
+        'https://dummyimage.com/600x400/d123d1/fff.png&text=text-2',
+        'https://dummyimage.com/600x400/90cf23/fff.png&text=text-3',
+        'https://dummyimage.com/600x400/235fcf/fff.png&text=text-4',
+        'https://dummyimage.com/600x400/cfc123/fff.png&text=text-5',
+        'https://dummyimage.com/600x400/23cfcf/fff.png&text=text-6',
+      ],
+      startX: 0,
+      pos: 0,
+      position: ['curr', 'next', 'prev'],
+    }
+  },
+
+  computed: {
+    currVideos() {
+      const len = this.videos.length
+      const vitalVideos = this.videos.slice(this.pos, this.pos + 3)
+
+      return vitalVideos.length < 3
+        ? [...vitalVideos, ...this.videos.slice(0, this.pos + 3 - len)]
+        : vitalVideos
+    },
+  },
+
+  mounted() {
+    // this.autoswiper()
+  },
+
+  methods: {
+    compatibleTouchEvent(e) {
+      return e.changedTouches[0] || e.targetTouches[0] || e.touches[0]
+    },
+
+    handleTouchStart(e) {
+      this.startX = e.changedTouches[0].clientX
+    },
+
+    handleTouchMove(e) {
+      const deltaX = e.changedTouches[0].clientX - this.startX
+      const screenWidth = document.documentElement.offsetWidth
+    },
+
+    handleTouchEnd(e) {
+      const screenWidth = document.documentElement.offsetWidth
+      const deltaX = e.changedTouches[0].clientX - this.startX
+      const len = this.videos.length
+
+      if (Math.abs(deltaX) > screenWidth / 5) {
+        if (deltaX > 0) {
+          // 右滑
+          if (this.pos === 0) return
+          this.pos -= 1
+        } else {
+          // 左滑
+          this.pos += 1
+          if (this.pos === len) this.pos = 0
+        }
+      }
     },
   },
 })
 </script>
 
 <style lang="scss" scoped>
-.swiper-container {
+.swiper-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  list-style: none;
   overflow: hidden;
 }
 
-.swiper-wrapper {
-  box-sizing: content-box;
-  display: flex;
+.swiper-slide {
   position: relative;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  transition: all 1s ease;
-  transform: translateX(0);
+  flex-shrink: 0;
+  translate: 300ms all linear;
 }
 
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  position: relative;
+.swiper-slide-curr {
+  width: 80%;
+  transform: translateX(0);
+  order: 1;
+  z-index: 3;
+}
+
+.swiper-slide-next {
+  width: 70%;
+  transform: translateX(-85%);
+  order: 2;
+  z-index: 2;
+}
+
+.swiper-slide-prev {
+  width: 60%;
+  transform: translateX(-183%);
+  order: 3;
+  z-index: 1;
+}
+
+.swiper-slide-next::before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  text-align: center;
+  background: rgba(#fff, 0.45);
+}
+
+.swiper-slide-prev::before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(#fff, 0.75);
 }
 
 .item-img {
-  display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  border-radius: 4px;
+  object-fit: cover;
 }
 </style>
