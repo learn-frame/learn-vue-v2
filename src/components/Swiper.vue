@@ -7,11 +7,17 @@
   >
     <li
       v-for="(video, i) in currVideos"
-      ref="swiperItem"
+      ref="swiperItemEl"
       :key="i"
       :class="['swiper-slide', `swiper-slide-${type[i]}`]"
     >
-      <img class="item-img" :src="video" />
+      <video
+        class="video-container"
+        :src="video.video"
+        :poster="video.poster"
+        :autoplay="i === 0"
+        muted
+      />
     </li>
   </ul>
 </template>
@@ -25,12 +31,48 @@ export default Vue.extend({
   data() {
     return {
       videos: [
-        'https://pic.rmb.bdstatic.com/bjh/live/9a7b7b81b5c0be9d4c4798b5645598e3.png',
-        'https://pic.rmb.bdstatic.com/bjh/live/b457233d57254a53cdb6633a22a6b7ae.jpeg',
-        'https://pic.rmb.bdstatic.com/bjh/live/7ebd1b12643886bd9f364dc148193f65.jpeg',
-        'https://ss0.bdstatic.com/9bA1vGfa2gU2pMbfm9GUKT-w/timg?searchbox_feed&size=f660_370&quality=80&wh_rate=0&imgtype=0&ref=http%3A%2F%2Fwww.baidu.com&sec=0&di=51570b1e7edc6008c02d34b41501ab3f&src=http%3A%2F%2Fpic.rmb.bdstatic.com%2Fbjh%2Fvideo%2Fe8bb10886b1c881a05d6abf0d747cd07.jpeg',
-        'https://ss0.bdstatic.com/9bA1vGfa2gU2pMbfm9GUKT-w/timg?searchbox_feed&size=f660_370&quality=80&wh_rate=0&imgtype=0&ref=http%3A%2F%2Fwww.baidu.com&sec=0&di=fea2aa26a549a4dcdb24b3a81671ad1a&src=http%3A%2F%2Fpic.rmb.bdstatic.com%2Fbjh%2Fvideo%2F659dbb545fc3bc83d17874a857e8d645.jpeg',
-        'https://ss0.bdstatic.com/9bA1vGfa2gU2pMbfm9GUKT-w/timg?searchbox_feed&size=f660_370&quality=80&wh_rate=0&imgtype=0&ref=http%3A%2F%2Fwww.baidu.com&sec=0&di=9bfedff1d299ebebef753a4f2cc2515e&src=http%3A%2F%2Fpic.rmb.bdstatic.com%2Fbjh%2Fvideo%2Ff081d8f9e0c5d6f46d4719fdb4e75870.jpeg',
+        {
+          poster:
+            'https://pic.rmb.bdstatic.com/bjh/live/9a7b7b81b5c0be9d4c4798b5645598e3.png',
+          video: 'http://www.w3school.com.cn/example/html5/mov_bbb.mp4',
+          title: '光头强《桥边姑娘》，改编《隔壁老王》，笑死我了',
+          period: '2020-02-04期',
+        },
+        {
+          poster:
+            'https://pic.rmb.bdstatic.com/bjh/live/b457233d57254a53cdb6633a22a6b7ae.jpeg',
+          video: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
+          title: '6个笑话，笑了7天7夜！不笑你揍我！',
+          period: '2020-03-01期',
+        },
+        {
+          poster:
+            'https://pic.rmb.bdstatic.com/bjh/live/7ebd1b12643886bd9f364dc148193f65.jpeg',
+          video: 'https://www.w3schools.com/html/movie.mp4',
+          title: '老师让学生讲笑话，没想学生一个比一个有才，听完笑趴了',
+          period: '2020-03-02期',
+        },
+        {
+          poster:
+            'https://ss0.bdstatic.com/9bA1vGfa2gU2pMbfm9GUKT-w/timg?searchbox_feed&size=f660_370&quality=80&wh_rate=0&imgtype=0&ref=http%3A%2F%2Fwww.baidu.com&sec=0&di=51570b1e7edc6008c02d34b41501ab3f&src=http%3A%2F%2Fpic.rmb.bdstatic.com%2Fbjh%2Fvideo%2Fe8bb10886b1c881a05d6abf0d747cd07.jpeg',
+          video: 'http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4',
+          title: '四川笑话: 四川的婆娘, 一个比一个歪',
+          period: '2020-03-03期',
+        },
+        {
+          poster:
+            'https://ss0.bdstatic.com/9bA1vGfa2gU2pMbfm9GUKT-w/timg?searchbox_feed&size=f660_370&quality=80&wh_rate=0&imgtype=0&ref=http%3A%2F%2Fwww.baidu.com&sec=0&di=fea2aa26a549a4dcdb24b3a81671ad1a&src=http%3A%2F%2Fpic.rmb.bdstatic.com%2Fbjh%2Fvideo%2F659dbb545fc3bc83d17874a857e8d645.jpeg',
+          video: 'http://vjs.zencdn.net/v/oceans.mp4',
+          title: '云南方言搞笑视频',
+          period: '2020-03-04期',
+        },
+        {
+          poster:
+            'https://ss0.bdstatic.com/9bA1vGfa2gU2pMbfm9GUKT-w/timg?searchbox_feed&size=f660_370&quality=80&wh_rate=0&imgtype=0&ref=http%3A%2F%2Fwww.baidu.com&sec=0&di=9bfedff1d299ebebef753a4f2cc2515e&src=http%3A%2F%2Fpic.rmb.bdstatic.com%2Fbjh%2Fvideo%2Ff081d8f9e0c5d6f46d4719fdb4e75870.jpeg',
+          video: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
+          title: '神配音《诸葛亮怒骂老流氓》，笑得我不行了！来听听吧！',
+          period: '2020-04-01期',
+        },
       ],
       startX: 0,
       pos: 0,
@@ -41,7 +83,7 @@ export default Vue.extend({
   },
 
   mounted() {
-    this.$swiperItemEl = this.$refs.swiperItem
+    this.$swiperItemEl = this.$refs.swiperItemEl
     this.videosLen = this.videos.length
   },
 
@@ -73,22 +115,28 @@ export default Vue.extend({
     handleTouchMove(e) {
       const deltaX = this.getDeltaX(e)
 
-      if (deltaX > 0) {
-        // TODO:
-      } else {
-        this.$swiperItemEl.forEach((item, i) =>
-          item.classList.add(`swiper-slide-${this.type[i]}-touch`),
-        )
-      }
+      this.$swiperItemEl.forEach((item, i) => {
+        if (deltaX > 0) {
+          if (this.pos !== 0) {
+            item.classList.add(`swiper-slide-${this.type[i]}-touch-right`)
+          }
+        } else {
+          item.classList.add(`swiper-slide-${this.type[i]}-touch-left`)
+        }
+      })
     },
 
     handleTouchEnd(e) {
       const screenWidth = document.documentElement.offsetWidth
       const deltaX = this.getDeltaX(e)
 
-      this.$swiperItemEl.forEach((item, i) =>
-        item.classList.remove(`swiper-slide-${this.type[i]}-touch`),
-      )
+      this.$swiperItemEl.forEach((item, i) => {
+        if (deltaX > 0) {
+          item.classList.remove(`swiper-slide-${this.type[i]}-touch-right`)
+        } else {
+          item.classList.remove(`swiper-slide-${this.type[i]}-touch-left`)
+        }
+      })
 
       if (Math.abs(deltaX) > screenWidth / 5) {
         if (deltaX > 0) {
@@ -164,25 +212,41 @@ export default Vue.extend({
   background: rgba(#fff, 0.75);
 }
 
-.swiper-slide-first-touch {
+.swiper-slide-first-touch-left {
   opacity: 0;
-  transition: opacity 150ms linear;
+  transition: opacity 300ms linear;
 }
 
-.swiper-slide-second-touch {
+.swiper-slide-second-touch-left {
   transform: translateX(-100%);
   width: 80%;
 }
 
-.swiper-slide-third-touch {
+.swiper-slide-third-touch-left {
   transform: translateX(-198%);
   width: 70%;
 }
 
-.item-img {
+.swiper-slide-first-touch-right {
+  opacity: 0;
+  transform: translateX(10%);
+  transition: transform 300ms linear, opacity 300ms linear;
+}
+
+.swiper-slide-second-touch-right {
+  transform: translateX(-75%);
+  width: 70%;
+}
+
+.swiper-slide-third-touch-right {
+  transform: translateX(-173%);
+  width: 60%;
+}
+
+.video-container {
+  display: block;
   width: 100%;
   height: 100%;
   border-radius: 4px;
-  object-fit: cover;
 }
 </style>
