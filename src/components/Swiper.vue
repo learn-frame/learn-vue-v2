@@ -34,7 +34,7 @@ export default Vue.extend({
       ],
       startX: 0,
       pos: 0,
-      type: ['curr', 'next', 'prev'],
+      type: ['first', 'second', 'third'],
       $swiperItemEl: null,
       videosLen: 0,
     }
@@ -70,10 +70,16 @@ export default Vue.extend({
       this.startX = e.changedTouches[0].clientX
     },
 
-    handleTouchMove() {
-      this.$swiperItemEl.forEach((item, i) =>
-        item.classList.add(`swiper-slide-${this.type[i]}-touch`),
-      )
+    handleTouchMove(e) {
+      const deltaX = this.getDeltaX(e)
+
+      if (deltaX > 0) {
+        // TODO:
+      } else {
+        this.$swiperItemEl.forEach((item, i) =>
+          item.classList.add(`swiper-slide-${this.type[i]}-touch`),
+        )
+      }
     },
 
     handleTouchEnd(e) {
@@ -115,7 +121,7 @@ export default Vue.extend({
   transition: transform 300ms linear, width 300ms linear;
 }
 
-.swiper-slide-curr {
+.swiper-slide-first {
   width: 80%;
   transform: translateX(0);
   order: 1;
@@ -124,21 +130,21 @@ export default Vue.extend({
   transition: none;
 }
 
-.swiper-slide-next {
+.swiper-slide-second {
   width: 70%;
   transform: translateX(-85%);
   order: 2;
   z-index: 2;
 }
 
-.swiper-slide-prev {
+.swiper-slide-third {
   width: 60%;
   transform: translateX(-183%);
   order: 3;
   z-index: 1;
 }
 
-.swiper-slide-next::before {
+.swiper-slide-second::before {
   position: absolute;
   content: '';
   top: 0;
@@ -148,7 +154,7 @@ export default Vue.extend({
   background: rgba(#fff, 0.45);
 }
 
-.swiper-slide-prev::before {
+.swiper-slide-third::before {
   position: absolute;
   content: '';
   top: 0;
@@ -158,17 +164,17 @@ export default Vue.extend({
   background: rgba(#fff, 0.75);
 }
 
-.swiper-slide-curr-touch {
+.swiper-slide-first-touch {
   opacity: 0;
   transition: opacity 150ms linear;
 }
 
-.swiper-slide-next-touch {
+.swiper-slide-second-touch {
   transform: translateX(-100%);
   width: 80%;
 }
 
-.swiper-slide-prev-touch {
+.swiper-slide-third-touch {
   transform: translateX(-198%);
   width: 70%;
 }
