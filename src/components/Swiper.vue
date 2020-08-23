@@ -1,26 +1,23 @@
 <template>
   <ul
     class="swiper-wrapper"
-    ref="swiperList"
     @touchstart="handleTouchStart($event)"
     @touchmove="handleTouchMove($event)"
     @touchend="handleTouchEnd($event)"
   >
     <li
-      ref="swiperItem"
-      :class="['swiper-slide', `swiper-slide-${position[i]}`]"
       v-for="(video, i) in currVideos"
+      ref="swiperItem"
       :key="i"
+      :class="['swiper-slide', `swiper-slide-${type[i]}`]"
     >
-      <div class="mask" v-if="i === 0 && isTouching"></div>
-      <img :src="video" class="item-img" />
+      <img class="item-img" :src="video" />
     </li>
   </ul>
 </template>
 
 <script>
 import Vue from 'vue'
-import throttle from 'lodash.throttle'
 
 export default Vue.extend({
   name: 'Swiper',
@@ -37,25 +34,27 @@ export default Vue.extend({
       ],
       startX: 0,
       pos: 0,
-      position: ['curr', 'next', 'prev'],
-      rAF: null,
-      isTouching: false,
+      type: ['curr', 'next', 'prev'],
+      $swiperItemEl: null,
+      videosLen: 0,
     }
+  },
+
+  mounted() {
+    this.$swiperItemEl = this.$refs.swiperItem
+    this.videosLen = this.videos.length
   },
 
   computed: {
     currVideos() {
-      const len = this.videos.length
       const vitalVideos = this.videos.slice(this.pos, this.pos + 3)
-
       return vitalVideos.length < 3
-        ? [...vitalVideos, ...this.videos.slice(0, this.pos + 3 - len)]
+        ? [
+            ...vitalVideos,
+            ...this.videos.slice(0, this.pos + 3 - this.videosLen),
+          ]
         : vitalVideos
     },
-  },
-
-  mounted() {
-    // this.autoswiper()
   },
 
   methods: {
@@ -63,52 +62,27 @@ export default Vue.extend({
       return e.changedTouches[0] || e.targetTouches[0] || e.touches[0]
     },
 
-    handleTouchStart(e) {
-      this.startX = e.changedTouches[0].clientX
-      this.isTouching = true
+    getDeltaX(e) {
+      return e.changedTouches[0].clientX - this.startX
     },
 
-    handleTouchMove(e) {
-      const $currEl = document.querySelector('.swiper-slide-curr')
-      const $prevEl = document.querySelector('.swiper-slide-prev')
-      const $nextEl = document.querySelector('.swiper-slide-next')
+    handleTouchStart(e) {
+      this.startX = e.changedTouches[0].clientX
+    },
 
-      const $maskEl = document.querySelector('.mask')
-
-      const screenWidth = document.documentElement.offsetWidth
-      const deltaX = e.changedTouches[0].clientX - this.startX
-
-      const ratio = deltaX / 290
-
-      const opcaityRatio = e.changedTouches[0].clientX / this.startX / 1.2
-
-      $currEl.style.opacity = opcaityRatio
-      $maskEl.style.background = `rgba(255, 255, 255, ${1 - opcaityRatio})`
-
-      // if (this.pos !== 0 && Math.abs(ratio) < 0.05) {
-      //   $currEl.style.transform = `translateX(${ratio * 100}%)`
-      //   $prevEl.style.transform = `translateX(${(-1.83 + ratio) * 100}%)`
-      //   $nextEl.style.transform = `translateX(${(-0.85 + ratio) * 100}%)`
-
-      //   $nextEl.style.width = `${70 + Math.abs(ratio * 100)}%`
-      //   $prevEl.style.width = `${60 + Math.abs(ratio * 100)}%`
-      // }
+    handleTouchMove() {
+      this.$swiperItemEl.forEach((item, i) =>
+        item.classList.add(`swiper-slide-${this.type[i]}-touch`),
+      )
     },
 
     handleTouchEnd(e) {
       const screenWidth = document.documentElement.offsetWidth
-      const deltaX = e.changedTouches[0].clientX - this.startX
-      const len = this.videos.length
+      const deltaX = this.getDeltaX(e)
 
-      this.isTouching = false
-
-      const $currEl = document.querySelector('.swiper-slide-curr')
-      const $prevEl = document.querySelector('.swiper-slide-prev')
-      const $nextEl = document.querySelector('.swiper-slide-next')
-
-      $currEl.removeAttribute('style')
-      $prevEl.removeAttribute('style')
-      $nextEl.removeAttribute('style')
+      this.$swiperItemEl.forEach((item, i) =>
+        item.classList.remove(`swiper-slide-${this.type[i]}-touch`),
+      )
 
       if (Math.abs(deltaX) > screenWidth / 5) {
         if (deltaX > 0) {
@@ -118,7 +92,7 @@ export default Vue.extend({
         } else {
           // 左滑
           this.pos += 1
-          if (this.pos === len) this.pos = 0
+          if (this.pos === this.videosLen) this.pos = 0
         }
       }
     },
@@ -138,6 +112,7 @@ export default Vue.extend({
 .swiper-slide {
   position: relative;
   flex-shrink: 0;
+  transition: transform 300ms linear, width 300ms linear;
 }
 
 .swiper-slide-curr {
@@ -145,15 +120,8 @@ export default Vue.extend({
   transform: translateX(0);
   order: 1;
   z-index: 3;
-}
-
-.mask {
-  position: absolute;
-  content: '';
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  opacity: 1;
+  transition: none;
 }
 
 .swiper-slide-next {
@@ -188,6 +156,21 @@ export default Vue.extend({
   width: 100%;
   height: 100%;
   background: rgba(#fff, 0.75);
+}
+
+.swiper-slide-curr-touch {
+  opacity: 0;
+  transition: opacity 150ms linear;
+}
+
+.swiper-slide-next-touch {
+  transform: translateX(-100%);
+  width: 80%;
+}
+
+.swiper-slide-prev-touch {
+  transform: translateX(-198%);
+  width: 70%;
 }
 
 .item-img {
