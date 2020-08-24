@@ -12,7 +12,7 @@
             :class="['swiper-slide', `swiper-slide-${type[i]}`]"
         >
             <video
-                class="video-container"
+                class="swiper-video-container"
                 :src="video.video"
                 :poster="video.poster"
                 :autoplay="i === 0"
@@ -254,7 +254,7 @@ export default Vue.extend({
     width: 60%;
 }
 
-.video-container {
+.swiper-video-container {
     display: block;
     width: 100%;
     height: 100%;
